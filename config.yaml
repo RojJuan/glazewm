@@ -70,18 +70,44 @@ gaps:
     bottom: "1px"
     left: "1px"
 
-# Highlight active/inactive windows with a colored border.
-# ** Exclusive to Windows 11 due to API limitations.
+window_effects:
+  # Visual effects to apply to the focused window.
+  focused_window:
+    # Highlight the window with a colored border.
+    # ** Exclusive to Windows 11 due to API limitations.
+    border:
+      enabled: true
+      color: "#0000ff"
 
-focus_borders:
-  active:
-    enabled: true
-    color: "#0000ff"
+  # Visual effects to apply to non-focused windows.
+  other_windows:
+    border:
+      enabled: true
+      color: "#ff0000"
 
-  inactive:
-    enabled: false
+window_behavior:
+  # New windows are created in this state whenever possible.
+  # Allowed values: 'tiling', 'floating'.
+  initial_state: "tiling"
 
-    color: "#ff0000"
+  # Sets the default options for when a new window is created. This also
+  # changes the defaults for when the state change commands, like
+  # `set-floating`, are used without any flags.
+  state_defaults:
+    floating:
+      # Whether to center floating windows by default.
+      centered: true
+
+      # Whether to show floating windows as always on top.
+      shown_on_top: false
+
+    fullscreen:
+      # Maximize the window if possible. If the window doesn't have a
+      # maximize button, then it'll be fullscreen'ed normally instead.
+      maximized: false
+
+      # Whether to show fullscreen windows as always on top.
+      shown_on_top: false
 
 bar:
   height: "28px"
@@ -228,13 +254,11 @@ keybindings:
   - commands:
       ["shell-exec C:\\Program Files\\Thorium\\Application\\thorium.exe"]
     bindings: ["Alt+B"]
-
   - commands: ["shell-exec wt"]
     bindings: ["Alt+X"]
   - commands: ["shell-exec explorer"]
     bindings: ["Alt+E"]
   - commands: ["shell-exec %LOCALAPPDATA%\\Programs\\cursor\\Cursor.exe"]
-
     bindings: ["Alt+W"]
   # Shift focus in a given direction.
   - commands: ["focus --direction left"]
@@ -357,21 +381,17 @@ keybindings:
   - commands: ["move --workspace 2", "focus --workspace 2"]
     bindings: ["Alt+Shift+2"]
   - commands: ["move --workspace 3", "focus --workspace 3"]
-
     bindings: ["Alt+Shift+3"]
   - commands: ["move --workspace 4", "focus --workspace 4"]
-    bindings: "Alt+Shift+4"
-
+    bindings: ["Alt+Shift+4"]
   - commands: ["move --workspace 5", "focus --workspace 5"]
     bindings: ["Alt+Shift+5"]
   - commands: ["move --workspace 6", "focus --workspace 6"]
     bindings: ["Alt+Shift+6"]
   - commands: ["move --workspace 7", "focus --workspace 7"]
-
     bindings: ["Alt+Shift+7"]
   - commands: ["move --workspace 8", "focus --workspace 8"]
     bindings: ["Alt+Shift+8"]
-
   - commands: ["move --workspace 9", "focus --workspace 9"]
     bindings: ["Alt+Shift+9"]
 
